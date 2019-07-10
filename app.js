@@ -43,5 +43,5 @@ function appInit(db) {
   });
 
   return app;
-}
+};
 module.exports = appInit;

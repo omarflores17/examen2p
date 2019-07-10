@@ -16,7 +16,7 @@ MongoClient.connect(MongoUri, MOngoOption, (err, conn) => {
     console.log('Conexion Exitosa');
   }
   var db = conn.db(MongoDb);
-var app = require('../app');
+var app = require('../app')(db);
 var debug = require('debug')('examen2p:server');
 var http = require('http');
 
