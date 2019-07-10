@@ -43,7 +43,25 @@ function incidentesInit(db) {
         });
     });
 
-    
+    router.post('/', (req, res, next) => {
+        var newElement = Object.assign(thingsStruct, req.body, {
+            descripcion: "",
+            fechaYhora: "",
+            tipo: "",
+            estado: "",
+            usuarioRegistra: "",
+            usuarioAsignado: "",
+            fechaHoraAsignado: "",
+            fechaHoraCerrado: ""
+        });
+        incidentesColl.insertOne(newElement, {}, (err, result) => {
+            if (err) {
+                console.log(err);
+                return res.status(404).json('error');
+            }
+            return res.status(200).json({ "n": result.insertedCount, "obj": result.ops[0] });
+        });
+    });
 
 
     return router;
